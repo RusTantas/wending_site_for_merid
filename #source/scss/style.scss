@@ -1,0 +1,803 @@
+//<МИКСИНЫ>===============================================================================================
+@mixin anim($time, $delay) {
+   -webkit-transition: all $time ease $delay;
+   -moz-transition: all $time ease $delay;
+   -ms-transition: all $time ease $delay;
+   -o-transition: all $time ease $delay;
+   transition: all $time ease $delay;
+}
+
+@mixin anim_cubic($time, $delay) {
+   -webkit-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+   -moz-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+   -ms-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+   -o-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+   transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+}
+
+@mixin rotate($deg) {
+   -moz-transform: rotate($deg);
+   -ms-transform: rotate($deg);
+   -webkit-transform: rotate($deg);
+   -o-transform: rotate($deg);
+   transform: rotate($deg);
+}
+
+@mixin scale($num) {
+   -moz-transform: scale($num);
+   -ms-transform: scale($num);
+   -webkit-transform: scale($num);
+   -o-transform: scale($num);
+   transform: scale($num);
+}
+
+@mixin skew($num) {
+   -webkit-transform: skewX($num);
+   -moz-transform: skewX($num);
+   -ms-transform: skewX($num);
+   -o-transform: skewX($num);
+   transform: skewX($num);
+}
+
+@mixin cnt($h) {
+   display: flex;
+   flex-direction: column;
+   height: $h;
+   text-align: center;
+   align-items: stretch;
+   justify-content: center;
+}
+
+@mixin tr($x, $y, $z) {
+   transform: translate3d($x, $y, $z);
+}
+
+;
+
+@mixin flexbox() {
+   display: -webkit-box;
+   display: -moz-box;
+   display: -ms-flexbox;
+   display: -webkit-flex;
+   display: flex;
+   font-size: 0;
+}
+
+@mixin flexorder($val) {
+   -webkit-box-ordinal-group: $val;
+   -moz-box-ordinal-group: $val;
+   -ms-flex-order: $val;
+   -webkit-order: $val;
+   order: $val;
+}
+
+//</МИКСИНЫ>===============================================================================================
+
+//<ШРИФТЫ>===============================================================================================
+//для кириллицы нужно добавить в конец подключенного шрифта
+//&display=swap&subset=cyrillic-ext
+
+//<Подключаем шрифты>=======================================================================================
+//для подкл через vscode - курсор сюда - cmd+shift+p => google fonts => наз шрифта
+
+//поставить кавычки в скобки - вид:
+//@import url("   ")
+
+//</Подключаем шрифты>=======================================================================================
+//прописываем на кажд вид шрифта такую штуку
+@font-face {
+   font-family: 'Ekaterina Velikaya Two';
+   src: url('../fonts/ekaterinavelikayatwo.woff');
+   src: local('☺'), url('../fonts/ekaterinavelikayatwo.woff') format('woff'), url('../fonts/ekaterinavelikayatwo.woff2') format('woff2'), url('../fonts/ekaterinavelikayatwo.ttf') format('truetype'), url('../fonts/ekaterinavelikayatwo.svg') format('svg');
+   font-weight: 400;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Nicolettascript';
+   src: url('../fonts/Nicoletta-script.woff');
+   src: local('☺'), url('../fonts/Nicoletta-script.woff') format('woff'), url('../fonts/Nicoletta-script.woff2') format('woff2'), url('../fonts/Nicoletta-script.ttf') format('truetype'), url('../fonts/Nicoletta-script.svg') format('svg');
+   font-weight: 400;
+   font-style: normal;
+}
+
+//@import url('https://fonts.googleapis.com/css2?family=Cormorant&display=swap&subset=cyrillic-ext');
+@font-face {
+   font-family: 'Cormorant-Regular';
+   src: url('../fonts/Cormorant-Regular.woff');
+   src: local('☺'), url('../fonts/Cormorant-Regular.woff') format('woff'), url('../fonts/Cormorant-Regular.woff2') format('woff2'), url('../fonts/Cormorant-Regular.ttf') format('truetype'), url('../fonts/Cormorant-Regular.svg') format('svg');
+   font-weight: 400;
+   font-style: normal;
+}
+
+//<Шрифт по умолчанию>==========================================================================================
+$fontfamily: 'Cormorant-Regular', serif;
+//</Шрифт по умолчанию>==========================================================================================
+
+//</ШРИФТЫ>==============================================================================================================
+
+
+//<ПЕРЕМЕННЫЕ>=====СЕТКА АДАПТИВА ======================================================================================================
+$minwidth: 280px;
+$mwidth: 1440px; //ширина всего полотна макета от дизайнера
+$mw: 1170; //ширина контейнера ВСЕГДА!! на основании нее остальные брейкпойнты
+$md1: $mw+12;
+$md2: 992.98; //планшет
+$md3: 767.98; //бол смартфон
+$md4: 479.98; //мал смартфон
+
+//</ПЕРЕМЕННЫЕ>==============================================================================================================
+
+//<ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===============================================================================================
+
+//подкл обнуляющий файл
+@import "null";
+
+//</ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===============================================================================================
+
+//<ОБОЛОЧКА>===========================================================================================================
+.wrapper {
+   width: 100%;
+   min-height: 100%;
+   overflow: hidden;
+
+   &.loaded {}
+}
+
+//</ОБОЛОЧКА>===========================================================================================================
+
+//<ОСНОВНАЯ СЕТКА>===========================================================================================================
+.container {
+   max-width: $mw+px;
+   margin: 0 auto;
+   width: 100%;
+
+   @media (max-width:$md1+px) {
+      max-width: 970px;
+   }
+
+   @media (max-width:$md2+px) {
+      max-width: 750px;
+   }
+
+   @media (max-width:$md3+px) {
+      max-width: none;
+      padding: 0 10px;
+   }
+}
+
+//</ОСНОВНАЯ СЕТКА>===========================================================================================================
+
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+
+//</ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+
+//<ОСНОВНОЙ БЛОК>====================================================================================================
+
+//фиксирован фон
+
+
+main {
+   margin: 0 auto;
+   text-align: center;
+   padding: 150px 0px 0px 0px;
+
+}
+
+.fon-top {
+   position: absolute;
+   left: 0;
+   top: 0;
+   z-index: -1;
+}
+.fon-top.tel {
+   display: none;
+   @media (max-width:$md3+px) {
+      display: block;
+      img {
+      max-width: 100%;
+      }
+   }
+
+}
+.fon-top.pk {
+   display: none;
+   @media (min-width:$md3+px) {
+      display: block;
+   }
+}
+.fon-top img {
+   max-width: 100%;
+;
+   @media (max-width:$md3+px) {
+      max-width: 350px;
+   }
+
+   @media (max-width:$md4+px) {
+      max-width: 250px;
+   }
+
+}
+body {
+   position: relative;
+}
+
+body:before {
+   content: '';
+   background: url('../img/fon_main.png') no-repeat right bottom;
+   position: fixed;
+   background-size: cover;
+   height: 100vh;
+   right: 0;
+  bottom: 0;
+   width: 100vw;
+   background-position: right 50%;
+   z-index: -1;
+   will-change: transform;
+}
+
+.main-title {
+   padding: 300px 30px 100px 30px;
+   position: relative;
+   max-width: 685px;
+   height: 100%;
+   margin: 0 auto;
+   text-align: center;
+}
+
+.h1 {
+   opacity: 0.9;
+   font-family: 'Ekaterina Velikaya Two';
+   font-size: 160px;
+   line-height: 1.2;
+   font-weight: 400;
+   color: #505653;
+   width: 550px;
+   height: 850px;
+   @media (max-width:$md3+px) {
+      font-size: 120px;
+   }
+   @media (max-width:$md4+px) {
+      font-size: 100px;
+   }
+   @media (max-width:420px) {
+      font-size: 80px;
+   }
+   @media (max-width:290px) {
+      font-size: 70px;
+   }
+}
+
+.h1.and {
+   font-family: Nicolettascript;
+   opacity: 0.38;
+   font-size: 360px;
+   line-height: 1.2;
+   font-weight: 400;
+   color: #8f8f8f;
+   position: absolute;
+   top: 20%;
+   left: 25%;
+
+   @media (max-width:$md3+px) {
+      font-size: 250px;
+      top: 30%;
+      left: 20%;
+   }
+   @media (max-width:630px) {
+      left: 5%;
+   }
+   @media (max-width:$md4+px) {
+      font-size: 280px;
+    top: 20%;
+    left: -4%;
+   }
+ 
+   @media (max-width:424px) {
+      font-size: 200px;
+      left: -14%;
+   }
+   @media (max-width:380px) {
+      top: 25%;
+      font-size: 170px;
+   }
+   @media (max-width:360px) {
+      left: -20%;
+   }
+   @media (max-width:290px) {
+      left: -40%;
+   }
+}
+
+.ilya {
+   position: absolute;
+   right: -20%;
+   z-index: 2;
+   top: 20%;
+   @media (max-width:$md3+px) {
+      
+   }
+   @media (max-width:$md4+px) {
+      right: -30%;
+   }
+   @media (max-width:424px) {
+      right: -40%;
+   }
+   @media (max-width:410px) {
+      right: -50%;
+   }
+   @media (max-width:290px) {
+      right: -70%;
+   }
+}
+
+.daria {
+   position: absolute;
+   left: 0;
+   top: 65%;
+   z-index: 3;
+   @media (max-width:$md3+px) {
+      left: -8%;
+   }
+   @media (max-width:$md4+px) {
+      left: -20%;
+      top: 60%;
+   }
+   @media (max-width:424px) {
+left: -30%;
+top: 45%;
+   }
+   @media (max-width:410px) {
+      left: -38%;
+      top: 45%;
+   }
+   @media (max-width:350px) {
+      left: -42%;
+   }
+   @media (max-width:290px) {
+      left: -62%;
+   }
+}
+
+//======================================
+.main-text {
+   font-family: $fontfamily;
+   font-size: 28.8px;
+   line-height: 1.2;
+   font-weight: 400;
+   color: #4d3e2a;
+}
+
+.t1 {
+   margin: 270px 0px 58px 0px;
+   text-transform: uppercase;
+   font-family: $fontfamily;
+
+   @media (max-width:$md3+px) {
+      margin: 170px 0px 38px 0px;
+   }
+
+   @media (max-width:$md4+px) {
+      margin: 100px 0px 28px 0px;
+   }
+
+}
+
+.rotate {
+   transform: rotate(90deg);
+
+}
+
+.arrow {
+   
+   margin: 0 auto;
+   img {
+      width: 30px;
+      height: 20px;
+   }
+}
+
+h2 {
+   font-family: 'Ekaterina Velikaya Two';
+   line-height: 1.2;
+   font-weight: 700;
+   color: #4d3e2a;
+   font-size: 64px;
+   margin: 50px 0px 50px 0px;
+ 
+   @media (max-width:$md4+px) {
+      font-size: 54px;
+   }
+
+   @media (max-width:380px) {
+      font-size: 44px;
+   }
+}
+
+h2 span {
+   font-size: 53.4px;
+
+   @media (max-width:$md4+px) {
+      font-size: 43px;
+   }
+
+   @media (max-width:380px) {
+      font-size: 34px;
+   }
+}
+
+.weekday {
+   padding: 20px 0px 20px 0px;
+}
+
+.weekday__list {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.weekday__day {
+   text-transform: uppercase;
+   font-size: 21.4px;
+   color: #424745;
+}
+
+.weekday__day:not(:last-child) {
+   margin: 0px 10px 0px 0px;
+}
+
+.round {
+   border: 3px solid #c6c1a8;
+   border-radius: 50%;
+   padding: 5px;
+}
+
+a {
+   cursor: pointer;
+   display: block;
+   transition: all 0.5s ease 0s;
+   color: #424745;
+   font-size: 30px;
+
+   &:hover {
+      background-color: #c6c1a8;
+   }
+}
+
+.text {
+   display: block;
+   text-align: center;
+   font-size: 37px;
+   font-family: $fontfamily;
+   max-width: 670px;
+   margin: 0 auto;
+
+   @media (max-width:$md3+px) {
+      font-size: 30px;
+   }
+
+   @media (max-width:$md4+px) {
+      font-size: 26px;
+   }
+
+   @media (max-width:380px) {
+      font-size: 24px;
+   }
+}
+
+button {
+   color: #424745;
+}
+
+.location {
+   cursor: pointer;
+   display: inline-block;
+   box-shadow: 0px 8px 18px 0px rgba(0, 0, 0, 0.33);
+   padding: 12px 30px 12px 30px;
+   border: 4px solid #c6c1a8;
+   border-radius: 30px;
+   transition: all 0.5s ease 0s;
+   margin: 40px 0px 40px 0px;
+
+   //background-color: #c6c1a8;
+   &:hover {
+      background-color: #c6c1a8;
+   }
+
+   @media (max-width:$md4+px) {
+      //padding: 8px 25px 8px 25px;
+      margin: 30px 0px 30px 0px;
+      font-size: 30px;
+   }
+}
+
+a {
+   @media (max-width:$md4+px) {
+      font-size: 27px;
+   }
+}
+
+h3 {
+   margin: 0px 0px 30px 0px;
+   font-size: 32px;
+   color: #424745;
+   text-transform: uppercase;
+}
+
+//==========================================================
+//отступы
+.wedding__counter,
+.wishes-block {
+   margin: 0px 0px 50px 0px;
+}
+
+.margin {
+   margin: 0 auto 20px;
+}
+.counter-img {
+   margin: 50px 0px 40px 0px;
+}
+//==========================================================
+//тайминг
+.time-block {
+   position: relative;
+   margin: 0px 0px 50px 100px;
+
+   @media (max-width:$md4+px) {
+      margin: 0px 0px 50px 50px;
+   }
+}
+
+.time-block::before {
+   content: '';
+   background: url('../img/sloy_15_167.png') no-repeat;
+   width: 50px;
+   height: 265px;
+   background-size: contain;
+   position: absolute;
+   left: 0;
+   top: 10px;
+
+}
+
+.time-list {
+   text-align: left;
+   padding: 0px 0px 0px 50px;
+}
+
+.time-list .text {
+   text-align: left;
+}
+
+.time {
+   font-family: 'Ekaterina Velikaya Two';
+   font-size: 42.7px;
+   font-style: italic;
+   color: #4d3e2a;
+
+}
+
+.time-title {
+   text-align: left;
+}
+
+.time-title:not(:last-child) {
+   margin: 0px 0px 40px 0px;
+}
+
+
+.organizer {
+   margin: 0 auto;
+   max-width: 540px;
+   border: 5px solid #cbc5af;
+   border-radius: 50px;
+   padding: 40px 20px;
+}
+
+.organizer .location {
+   margin: 0px 0px 0px 0px;
+}
+
+.location.organizator {
+
+   padding: 20px 40px;
+
+}
+
+.day {
+   font-family: 'Ekaterina Velikaya Two';
+   font-weight: 900;
+   font-size: 40px;
+
+}
+
+.text-day {
+   margin-top: 30px;
+}
+//=========================================================
+//счетчик
+.timer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.counter__round {
+   display: block;
+   height: 100px;
+   width: 100px;
+   border-radius: 50%;
+border: 3px solid #c6c1a8;
+font-size: 45px;
+font-weight: 900;
+line-height: 170%;
+@media (max-width:555px) {
+   height: 70px;
+   width: 70px;
+   line-height: 120%;
+}
+@media (max-width:380px) {
+   font-size: 35px;
+   height: 60px;
+   width: 60px;
+}
+}
+.counter__round:not(:last-child) {
+   margin-right: 30px;
+   @media (max-width:555px) {
+      margin-right:15px;
+   }
+}
+.label {
+   font-family: $fontfamily;
+   font-size: 25px;
+   margin: 10px 0px 0px 0px;
+   font-weight: 400;
+   @media (max-width:380px) {
+      font-size: 20px;
+   }
+}
+//==========================================================
+//отправка формы
+.form {}
+
+.g-form__input-wrapper .text {
+   text-align: left;
+}
+
+.text-margin {
+   margin: 0px 0px 15px 0px;
+
+   @media (max-width:$md3+px) {
+      font-size: 30px;
+   }
+
+   @media (max-width:380px) {
+      font-size: 24px;
+   }
+}
+
+.form__input {
+   margin: 0px 0px 10px 0px;
+
+   @media (max-width:$md3+px) {
+      font-size: 26px;
+   }
+
+   @media (max-width:380px) {
+      font-size: 24px;
+   }
+}
+
+.hidden {
+   margin: 0px 0px 0px 0px;
+}
+
+.form {}
+
+.g-form {
+
+   &__title {
+
+      &_main {}
+
+      &_respond {}
+   }
+
+   &__preloader {}
+
+   &__inputs {}
+
+   &__input-wrapper {
+      text-align: left;
+      margin: 0px 0px 30px 0px;
+
+      &_hidden {
+         margin: 0px 0px 0px 0px;
+      }
+   }
+
+   &__input {
+      margin: 0px 20px 0px 0px;
+
+      &_name {
+         background-color: transparent;
+         border-bottom: 1px solid #cbc5af;
+         width: 100%;
+      }
+   }
+
+   &__alko {
+      margin: 0px 20px 0px 0px;
+   }
+
+   &__button-wrapper {}
+
+   &__button {
+      // text-transform: uppercase;
+      font-size: 30px;
+      margin: 0px 0px 100px 0px;
+      -webkit-background-color: transparent;
+      background-color: transparent;
+
+      @media (max-width:$md3+px) {
+         margin: 0px 0px 40px 0px;
+      }
+   }
+
+   @media (max-width:$md4+px) {
+      margin: 0px 0px 10px 0px;
+   }
+}
+
+.quote {
+   padding: 0px 0px 50px 0px;
+}
+
+.quote h2 {
+   height: 150px;
+   margin: 0px 0px 0px 0px;
+
+   @media (max-width:$md3+px) {
+      font-size: 40px;
+   }
+
+   @media (max-width:$md4+px) {
+      font-size: 35px;
+      line-height: 300%;
+      margin: 0px 0px 50px 0px;
+   }
+}
+
+
+.g-form__title_respond {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   margin-right: -50%;
+   transform: translate(-50%, -50%);
+   line-height: 200%;
+   font-size: 40px;
+   border-radius: 30px;
+   background: #fff;
+   z-index: 7;
+}
+
+.g-form__input-wrapper_hidden input {
+   background: transparent;
+}
+
+.element-animation {
+   opacity: 0;
+   -webkit-transform: translateY(20px);
+   transform: translateY(20px);
+}
+
+.element-animation.element-show {
+   opacity: 1;
+   -webkit-transform: translateY(0%);
+   -webkit-transition: all 3.5s;
+   transition: all 3.5s;
+   transform: translateY(0%);
+}
+//=======================================================
+//для счетчика
