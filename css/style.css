@@ -1045,3 +1045,27 @@ input:focus, textarea:focus {
       margin-right: 10px !important;
    }
 }
+/* ТОЛЬКО УБИРАЕМ ОБРЕЗКУ ИМЁН НА IPHONE */
+
+@media (max-width: 800px) {
+   /* Убираем скрытие переполнения у всех родительских контейнеров */
+   .wrapper,
+   .container,
+   main,
+   .main-title {
+      overflow: visible !important;
+   }
+   
+   /* Даём больше места для имён */
+   .main-title {
+      padding-top: 80px !important;
+      padding-bottom: 80px !important;
+      min-height: 600px !important;
+      height: auto !important;
+   }
+   
+   /* Увеличиваем область видимости для абсолютных элементов */
+   body {
+      overflow-x: hidden !important;
+   }
+}
