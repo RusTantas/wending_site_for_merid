@@ -451,7 +451,15 @@ button { color: #424745; }
 .counter-img { margin: 50px 0px 40px 0px; }
 /* АДАПТИВ: отступы картинки */
 @media (max-width: 767.98px) {
-  .counter-img { margin: 30px 0px 25px 0px; }
+  .counter-img { 
+  margin: 30px 0px 25px 0px;
+  }
+}
+
+@media (max-width: 480px) {
+.counter-img { 
+margin: 30px 0px 25px 0px;
+  }
 }
 
 .timer {
@@ -914,10 +922,16 @@ input:focus, textarea:focus {
 }
 /* АДАПТИВ: картинка-разделитель */
 @media (max-width: 767.98px) {
-  .counter-img img { max-width: 200px; }
+  .counter-img img { 
+  max-width: 200px;
+  filter: contrast(1.2) brightness(1.1);
+   }
 }
 @media (max-width: 480px) {
-  .counter-img img { max-width: 150px; }
+  .counter-img img { 
+  max-width: 150px;
+  filter: contrast(1.2) brightness(1.1);
+  }
 }
 
 /* Кнопка панели управления в стиле сайта */
