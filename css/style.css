@@ -751,6 +751,8 @@ input:focus, textarea:focus {
    color: #fff;
 }
 
+/* Настройка мобилы*/
+
 @media (max-width: 767.98px) {
   .h1 {
     font-size: 120px;
@@ -769,5 +771,99 @@ input:focus, textarea:focus {
 @media (max-width: 290px) {
   .h1 {
     font-size: 70px;
+  }
+}
+@media (max-width: 767.98px) {
+  .h1.and {
+    font-size: 250px;
+    top: 30%;
+    left: 20%;
+  }
+}
+@media (max-width: 630px) {
+  .h1.and {
+    left: 5%;
+  }
+}
+@media (max-width: 479.98px) {
+  .h1.and {
+    font-size: 280px;
+    top: 20%;
+    left: -4%;
+  }
+}
+@media (max-width: 424px) {
+  .h1.and {
+    font-size: 200px;
+    left: -14%;
+  }
+}
+@media (max-width: 380px) {
+  .h1.and {
+    top: 25%;
+    font-size: 170px;
+  }
+}
+@media (max-width: 360px) {
+  .h1.and {
+    left: -20%;
+  }
+}
+@media (max-width: 290px) {
+  .h1.and {
+    left: -40%;
+  }
+}
+@media (max-width: 479.98px) {
+  .ilya {
+    right: -30%;
+  }
+}
+@media (max-width: 424px) {
+  .ilya {
+    right: -40%;
+  }
+}
+@media (max-width: 410px) {
+  .ilya {
+    right: -50%;
+  }
+}
+@media (max-width: 290px) {
+  .ilya {
+    right: -70%;
+  }
+}
+@media (max-width: 767.98px) {
+  .daria {
+    left: -8%;
+  }
+}
+@media (max-width: 479.98px) {
+  .daria {
+    left: -20%;
+    top: 60%;
+  }
+}
+@media (max-width: 424px) {
+  .daria {
+    left: -30%;
+    top: 45%;
+  }
+}
+@media (max-width: 410px) {
+  .daria {
+    left: -38%;
+    top: 45%;
+  }
+}
+@media (max-width: 350px) {
+  .daria {
+    left: -42%;
+  }
+}
+@media (max-width: 290px) {
+  .daria {
+    left: -62%;
   }
 }
