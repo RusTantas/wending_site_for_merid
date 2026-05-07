@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+   <title>Дарья&Илья</title><!--имя файла-->
+   <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+   <meta name="format-detection" content="telephone=no">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/custom.css">
+
+   <!--иконка в браузере-->
+   <!-- <meta name="robots" content="noindex, nofollow" /> -->
+   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+</head>
+
+<body>
+
+   <main class="main fon__scroll">
+      <div class="fon-top pk">
+         <img src="img/fon_top_pk.png" alt="Картинка">
+
+      </div>
+      <div class="fon-top tel">
+         <img src="img/fon_top_tel.png" alt="Картинка">
+      </div>
+      <div class="wrapper">
+         <div class="container">
+            <div class="main-page">
+               <div class="main-title element-animation">
+                  <p class="h1 ilya">Дарья</p>
+                  <p class="h1 and">&</p>
+                  <p class="h1 daria">Александр</p>
+               </div>
+               <p class="main-text t1">
+                  приглашают вас на свою свадьбу
+               </p>
+               <div class="arrow">
+                  <img src="img/arrow_bottom.png" alt="Картинка">
+               </div>
+            </div>
+            <h2>21 <span>июня</span> 2026</h2>
+            <div class="weekday">
+               <ul class="weekday__list">
+                  <li class="weekday__day">ПН</li>
+                  <li class="weekday__day">вт</li>
+                  <li class="weekday__day">ср</li>
+                  <li class="weekday__day">чт</li>
+                  <li class="weekday__day">пт</li>
+                  <li class="weekday__day">сб</li>
+                  <li class="weekday__day round">вс</li>
+               </ul>
+            </div>
+            <p class="text">
+               Мы очень ждали момента, когда сможем 
+           разделить с Вами один из самых важных
+               и счастливых дней нашей жизни –
+               день нашей свадьбы!
+            </p>
+            <div class="counter-img">
+               <img src="img/tsvetok_183.png" alt="Картинка">
+            </div>
+            <div class="location-block">
+               <h2>Локация</h2>
+               <div class="text">
+                  База отдыха «Маяк»
+               </div>
+               <div class="text">
+                  Самарская область, Ставропольский район, с.п. Васильевка
+               </div>
+               <div class="location">
+                  <a target="_blank"
+                     href="https://yandex.ru/navi/org/mayak/28701397180?si=4373ty1h6ku1prffagqdzzdrmr">Открыть в навигаторе</a>
+               </div>
+            </div>
+            </div>
+           <div class="timing-block">
+            <h2>Тайминг</h2>
+            <div class="time-block">
+               <ul class="time-list">
+                  <li>
+                     <span class="time">15:30</span>
+                     <span class="time-title">Сбор гостей</span>
+                  </li>
+                  <li>
+                     <span class="time">16:00</span>
+                     <span class="time-title">Церемония</span>
+                  </li>
+                  <li>
+                     <span class="time">16:40</span>
+                     <span class="time-title">Банкет</span>
+                  </li>
+                  <li>
+                     <span class="time">21:30</span>
+                     <span class="time-title">Торт</span>
+                  </li>
+               </ul>
+            </div>
+         </div>
+            <div class="wedding__counter">
+               <h3>До нашей свадьбы осталось</h3>
+               <p id="timer" class="timer">
+                  <span class="counter__round" id="timer-days">
+
+                  </span>
+                  <span class="counter__round" id="timer-hours">
+
+                  </span>
+                  <span class="counter__round" id="timer-mins"></span>
+                  <span class="counter__round" id="timer-secs"></span>
+               </p>
+               <div class="counter-img">
+                  <img src="img/tsvetok_183.png" alt="картинка">
+               </div>
+            </div>
+            <div class="wishes-block">
+               <h2>Пожелания</h2>
+
+               <p class="text margin"> Будем рады видеть всех по возможности в светлых и нежных оттенках.</p>
+            </div>
+             <div class="wishes-block">
+               <h2>О цветах</h2>
+
+               <p class="text margin"> Мы очень любим цветы, но в день торжества не успеем насладиться их краостой. Если вы захотите порадовать нас, лучше положите небольшой вкладв наш "цветочный фонд". После свадьбы мы будем покупать себе букеты и с теплом вспоминать этот день и каждого из Вас.</p>
+            </div>
+            <!-- <div class="organizer">
+               <p class="text">По всем вопросам Вы можете обращаться к нашему свадебному организатору.</p>
+               <br>
+               <p>МИЛАНА</p>
+               <br>
+               <a target="_blank" type="phone" href="https://wa.me/+79085522898"
+                  class="location organizator">Связаться</a>
+            </div>-->
+           
+            <div class="counter-img">
+               <img src="img/tsvetok_183.png" alt="картинка">
+            </div>
+
+            <!-- ПОЛНАЯ ФОРМА RSVP -->
+            <div class="form-block" id="rsvp">
+               <h2>Подтвердите участие</h2>
+               <p class="text rsvp-deadline">Ваши ответы помогут нам всё организовать с заботой о вас 🤍</p>
+               <p class="text text-day">Пожалуйста, дайте ответ до <span class="day">31.05.2026</span></p>
+
+               <form class="form-card" id="guest-form">
+                  <fieldset class="g-form__input-wrapper">
+                     <p class="text-margin">Имя и фамилия + имена вашей пары / детей (если будете с ними)</p>
+                     <input class="text g-form__input g-form__input_name" type="text" id="guest-fullname" placeholder="Например: Иван Петров, жена Ольга, сын Миша" required>
+                  </fieldset>
+
+                  <fieldset class="g-form__input-wrapper">
+                     <p class="text-margin">Количество гостей (включая вас)</p>
+                     <input class="text g-form__input" type="number" id="guest-persons" min="1" max="20" value="1" required>
+                  </fieldset>
+
+                  <fieldset class="g-form__input-wrapper">
+                     <p class="text-margin">Сможете ли вы присутствовать?</p>
+                     <label class="form__input"><input type="radio" name="attendance" value="yes" required> Да, с радостью!</label><br>
+                     <label class="form__input"><input type="radio" name="attendance" value="no" id="attendance-no"> К сожалению, не смогу</label>
+                  </fieldset>
+
+                  <fieldset class="g-form__input-wrapper" id="wishes-group" style="display: none;">
+                     <p class="text-margin">Пожелания молодожёнам</p>
+                     <textarea class="g-form__input_name" id="guest-wishes" rows="4" style="width:100%;" placeholder="Напишите свои тёплые пожелания... Мы будем очень рады 🤍"></textarea>
+                  </fieldset>
+
+                  <fieldset class="g-form__input-wrapper transfer-section">
+                     <p class="text-margin">Трансфер</p>
+                     <p class="transfer-section__text">Нам важно, чтобы вам было комфортно, поэтому мы организуем трансфер</p>
+                     <label class="form__input"><input type="checkbox" name="transport" value="личный автомобиль"> на личном автомобиле</label><br>
+                     <label class="form__input"><input type="checkbox" name="transport" value="такси"> на такси</label><br>
+                     <label class="form__input"><input type="checkbox" name="transport" value="трансфер (автобус)"> трансфер (автобус от пункта сбора)</label>
+                  </fieldset>
+
+                  <fieldset class="g-form__input-wrapper drink-preferences">
+                     <p class="text-margin">Предпочтения по напиткам (можно выбрать несколько вариантов):</p>
+                     <div class="drink-options-grid">
+                        <label class="form__input"><input type="checkbox" name="drinks" value="Красное сухое"> Красное сухое</label>
+                        <label class="form__input"><input type="checkbox" name="drinks" value="Красное полусладкое"> Красное полусладкое</label>
+                        <label class="form__input"><input type="checkbox" name="drinks" value="Белое сухое"> Белое сухое</label>
+                        <label class="form__input"><input type="checkbox" name="drinks" value="Белое полусладкое"> Белое полусладкое</label>
+                        <label class="form__input"><input type="checkbox" name="drinks" value="Шампанское"> Шампанское</label>
+                        <label class="form__input"><input type="checkbox" name="drinks" value="Коньяк"> Коньяк</label>
+                        <label class="form__input"><input type="checkbox" name="drinks" value="Виски"> Виски</label>
+                        <label class="form__input"><input type="checkbox" name="drinks" value="Водка"> Водка</label>
+                        <label class="form__input"><input type="checkbox" name="drinks" value="Лимончелло"> Лимончелло</label>
+                        <label class="form__input"><input type="checkbox" name="drinks" value="Безалкогольные напитки"> Безалкогольные напитки</label>
+                     </div>
+                  </fieldset>
+
+                  <div class="g-form__button-wrapper">
+                     <button type="submit" class="location g-form__button">Отправить ответ</button>
+                  </div>
+                  <div class="form-message" id="form-message"></div>
+               </form>
+            </div>
+
+            <div class="quote">
+               <h2>С нетерпением ждем Вас</h2>
+            </div>
+            
+            <div class="admin-link">
+               <button class="admin-link__btn" id="admin-access-btn">⚙ Панель управления</button>
+            </div>
+            
+             <div class="admin-overlay" id="admin-overlay">
+               <div class="admin-login" id="admin-login-form">
+                  <h3 class="admin-login__title">Вход в панель управления</h3>
+                  <input class="g-form__input_name" type="text" id="admin-username" placeholder="Логин" style="width:100%; margin-bottom:10px;">
+                  <input class="g-form__input_name" type="password" id="admin-password" placeholder="Пароль" style="width:100%; margin-bottom:10px;">
+                  <button class="location" id="admin-login-btn">Войти</button>
+                  <p class="form-message form-message--error" id="admin-login-error" style="display:none;">Неверный логин или пароль</p>
+               </div>
+
+               <div class="admin-panel" id="admin-panel" style="display:none;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;"></div>
+                     <div class="admin-panel__header">
+                        <h2>Панель управления</h2>
+                     </div>
+                     
+                  <div class="admin-stats">
+                     <div class="stat-card"><span id="guest-count">0</span><br>Гостей</div>
+                     <div class="stat-card"><span id="total-persons">0</span><br>Персон</div>
+                     <div class="stat-card"><span id="drink-stats">0</span><br>С напитками</div>
+                  </div>
+                  <input type="text" id="admin-search" placeholder="Поиск по имени..." style="width:100%; margin-bottom:10px;">
+                  <button class="admin-btn" id="admin-export">Экспорт CSV</button>
+                  <button class="admin-btn admin-btn--danger" id="admin-delete-all">Удалить всё</button>
+                  <div class="guest-table-wrapper">
+                     <table class="guest-table">
+                        <thead>
+                           <tr><th>Гость</th><th>Статус</th><th>Трансфер</th><th>Напитки</th><th>Пожелания</th><th>Дата</th><th></th></tr>
+                        </thead>
+                        <tbody id="guest-tbody"></tbody>
+                     </table>
+                     <div class="empty-state" id="empty-state">Пока нет зарегистрированных гостей</div>
+                  </div>
+                     <div style="text-align: center; margin-top: 30px;">
+                        <button id="admin-logout-btn" style="padding: 8px 25px; background: #c6c1a8; border: none; border-radius: 30px; cursor: pointer; font-size: 16px;">Выйти</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+
+            </div>
+         </div>
+      </div>
+
+
+   </main>
+
+   <!--подключаем js -->
+<!--подключ jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<!--собираются кусочки js которые я пишу -->
+<script src="js/main.js"></script>
+<!--счетчик -->
+<script src="js/counter.js"></script>
+
+   </main>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="js/main.js"></script>
+   <script src="js/counter.js"></script>
+   
+   <script>
+      // Поле пожеланий появляется при выборе "не смогу"
+      document.addEventListener('DOMContentLoaded', function() {
+         const attendanceNo = document.getElementById('attendance-no');
+         const wishesGroup = document.getElementById('wishes-group');
+         
+         if (attendanceNo && wishesGroup) {
+            function toggleWishes() {
+               wishesGroup.style.display = attendanceNo.checked ? 'block' : 'none';
+            }
+            
+            document.querySelectorAll('input[name="attendance"]').forEach(function(radio) {
+               radio.addEventListener('change', toggleWishes);
+            });
+            
+            toggleWishes();
+         }
+      });
+   </script>
+
+   <script src="js/script.js"></script>
+
+</body>
+</html>
+
+</body>
+
+</html>
