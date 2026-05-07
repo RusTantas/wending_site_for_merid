@@ -53,17 +53,18 @@
     setInterval(update, 1000);
   }
 
-// Прокрутка по клику на стрелку
-document.addEventListener('DOMContentLoaded', function() {
-  const arrow = document.querySelector('.arrow');
-  if (arrow) {
-    arrow.addEventListener('click', function() {
-      document.querySelector('.weekday').scrollIntoView({ 
-        behavior: 'smooth' 
-      });
+  // Плавная прокрутка при клике на стрелку
+  function initScrollHint() {
+    const scrollHint = document.getElementById('scrollHint');
+    if (!scrollHint) return;
+    
+    scrollHint.addEventListener('click', function() {
+      const nextSection = document.querySelector('.section');
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   }
-});
 
   // Форма RSVP
   function initForm() {
