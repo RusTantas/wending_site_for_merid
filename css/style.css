@@ -1035,7 +1035,7 @@ input:focus, textarea:focus {
 /* ПРИНУДИТЕЛЬНАЯ ВЫСОТА ДЛЯ КОНТЕЙНЕРА С ИМЕНАМИ */
 @media (max-width: 480px) {
    .main-title {
-      min-height: 500px !important;
+      min-height: 200px !important;
       height: auto !important;
       padding: 60px 10px !important;
       overflow: visible !important;
@@ -1054,15 +1054,27 @@ input:focus, textarea:focus {
    }
    
    /* Сами имена */
-   .ilya, .daria {
+   .ilya {
       display: block !important;
       min-height: 100px !important;  /* каждому имени минимум 100px */
       height: auto !important;
       line-height: 4 !important;
-      font-size: 55px !important;
-      margin: 15px 0 !important;
+      font-size: 50px !important;
+      margin: 0px 0 !important;
       overflow: visible !important;
-      padding: 5px 5px !important;
+      padding: 0px 0px !important;
+   }
+
+
+   .daria {
+      display: block !important;
+      min-height: 100px !important;  /* каждому имени минимум 100px */
+      height: auto !important;
+      line-height: 4 !important;
+      font-size: 50px !important;
+      margin: 0px 0 !important;
+      overflow: visible !important;
+      padding: 0px 5px !important;
    }
    
    .h1.and {
@@ -1072,5 +1084,43 @@ input:focus, textarea:focus {
    
    .ilya, .daria {
       background: rgba(0,255,0,0.2) !important;
+   }
+}
+
+/* ПОДНИМАЕМ ТЕКСТ "приглашают вас на свою свадьбу" БЛИЖЕ К ИМЕНАМ */
+
+@media (max-width: 480px) {
+   .t1 {
+      margin-top: -30px !important;  /* отрицательный отступ — тянем текст вверх */
+      position: relative !important;
+      z-index: 5 !important;
+   }
+}
+/* ПОДНИМАЕМ ВЕСЬ БЛОК С ИМЕНАМИ ВЫШЕ */
+
+@media (max-width: 480px) {
+   .main-title {
+      margin-top: -20px !important;  /* отрицательный отступ — тянем весь блок вверх */
+      position: relative !important;
+   }
+}
+
+/* СДВИГАЕМ ИМЕНА В СТОРОНЫ */
+
+@media (max-width: 480px) {
+   /* Александр (левое имя) — чуть левее */
+   .ilya {
+      margin-right: auto !important;  /* сдвигаем влево */
+      margin-left: 0 !important;
+      text-align: left !important;
+      padding-left: 130px !important;
+   }
+   
+   /* Дарья (правое имя) — чуть правее */
+   .daria {
+      margin-left: auto !important;  /* сдвигаем вправо */
+      margin-right: 0 !important;
+      text-align: right !important;
+      padding-right: 150px !important;
    }
 }
