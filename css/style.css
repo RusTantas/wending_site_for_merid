@@ -1045,39 +1045,44 @@ input:focus, textarea:focus {
       margin-right: 10px !important;
    }
 }
-/* ТОЛЬКО УМЕНЬШЕНИЕ ИМЁН НА IPHONE — ОСТАЛЬНОЕ НЕ ТРОГАЕМ */
+/* ТОЛЬКО ИМЕНА — УБИРАЕМ ОБРЕЗКУ */
 
 @media (max-width: 800px) {
-   /* Уменьшаем оба имени */
+   /* Убираем абсолютное позиционирование у имён — они встают в колонку */
    .ilya,
    .daria {
-      font-size: 50px !important;
+      position: relative !important;
+      right: auto !important;
+      left: auto !important;
+      top: auto !important;
+      display: block !important;
+      text-align: center !important;
+      margin: 10px 0 !important;
+      font-size: 55px !important;
+      white-space: normal !important;  /* разрешаем перенос строки */
+      word-break: keep-all !important; /* не разрываем слово */
    }
    
-   /* Союз "и" тоже чуть уменьшаем */
-   .h1.and {
-      font-size: 100px !important;
+   /* Родительский контейнер — убираем высоту и отступы */
+   .main-title {
+      padding: 50px 15px 40px 15px !important;
+      height: auto !important;
+      min-height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
    }
 }
 
 @media (max-width: 480px) {
    .ilya,
    .daria {
-      font-size: 42px !important;
-   }
-   
-   .h1.and {
-      font-size: 80px !important;
+      font-size: 45px !important;
    }
 }
 
 @media (max-width: 380px) {
    .ilya,
    .daria {
-      font-size: 36px !important;
-   }
-   
-   .h1.and {
-      font-size: 70px !important;
+      font-size: 38px !important;
    }
 }
