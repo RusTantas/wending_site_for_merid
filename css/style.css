@@ -1045,3 +1045,50 @@ input:focus, textarea:focus {
       margin-right: 10px !important;
    }
 }
+/* ИСПРАВЛЕНИЕ ОБРЕЗАНИЯ ИМЁН НА МОБИЛЬНЫХ */
+
+@media (max-width: 767.98px) {
+   /* Убираем абсолютное позиционирование у имён */
+   .ilya,
+   .daria {
+      position: relative !important;
+      right: auto !important;
+      left: auto !important;
+      top: auto !important;
+      display: block !important;
+      text-align: center !important;
+      margin: 20px 0 !important;
+      font-size: 70px !important;
+   }
+   
+   /* Убираем абсолютное позиционирование у союза "и" */
+   .h1.and {
+      position: relative !important;
+      left: auto !important;
+      top: auto !important;
+      display: block !important;
+      text-align: center !important;
+      font-size: 60px !important;
+      margin: 10px 0 !important;
+      transform: none !important;
+   }
+   
+   /* Родительский контейнер — убираем ограничения по высоте */
+   .main-title {
+      padding: 100px 15px 50px 15px !important;
+      height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+   }
+}
+
+@media (max-width: 480px) {
+   .ilya,
+   .daria {
+      font-size: 55px !important;
+   }
+   
+   .h1.and {
+      font-size: 50px !important;
+   }
+}
