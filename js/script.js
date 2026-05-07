@@ -19,7 +19,7 @@
     return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
   }
 
-  // Таймер для блока Тайминг дня (до 21 июня 2026 15:30)
+  // Таймер для блока Тайминг дня
   function initCountdown() {
     const target = new Date('2026-06-21T15:30:00').getTime();
     const daysEl = document.getElementById('countdown-days');
@@ -75,16 +75,11 @@
 
     if (!form) return;
 
-    // Показываем/скрываем поле пожеланий при выборе "не смогу"
     if (attendanceNo && wishesGroup) {
       const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
       attendanceRadios.forEach(function(radio) {
         radio.addEventListener('change', function() {
-          if (attendanceNo.checked) {
-            wishesGroup.style.display = 'block';
-          } else {
-            wishesGroup.style.display = 'none';
-          }
+          wishesGroup.style.display = attendanceNo.checked ? 'block' : 'none';
         });
       });
     }
@@ -113,7 +108,6 @@
         return;
       }
 
-      // Если гость не может приехать, пожелания становятся обязательными
       if (attendance === 'no' && !wishes) {
         showMessage('Пожалуйста, напишите пожелания молодожёнам 🤍', 'error');
         return;
@@ -161,7 +155,6 @@
     const loginError = document.getElementById('admin-login-error');
     const adminPanel = document.getElementById('admin-panel');
     const adminClose = document.getElementById('admin-close');
-    const adminLogout = document.getElementById('admin-logout');
     const searchInput = document.getElementById('admin-search');
     const exportBtn = document.getElementById('admin-export');
     const deleteAllBtn = document.getElementById('admin-delete-all');
@@ -201,17 +194,6 @@
           }
         });
       }
-    }
-
-    if (adminLogout) {
-      adminLogout.addEventListener('click', function () {
-        if (adminPanel) adminPanel.style.display = 'none';
-        if (loginForm) loginForm.style.display = 'block';
-        var usernameInput = document.getElementById('admin-username');
-        var passwordInput = document.getElementById('admin-password');
-        if (usernameInput) usernameInput.value = '';
-        if (passwordInput) passwordInput.value = '';
-      });
     }
 
     if (searchInput) {
@@ -355,11 +337,32 @@
     }
   }
 
+  // Кнопка выхода из админ-панели
+  function initAdminLogout() {
+    const adminLogoutBtn = document.getElementById('admin-logout-btn');
+    if (adminLogoutBtn) {
+      adminLogoutBtn.addEventListener('click', function() {
+        const adminPanel = document.getElementById('admin-panel');
+        const loginForm = document.getElementById('admin-login-form');
+        const adminOverlay = document.getElementById('admin-overlay');
+        const usernameInput = document.getElementById('admin-username');
+        const passwordInput = document.getElementById('admin-password');
+        
+        if (adminPanel) adminPanel.style.display = 'none';
+        if (loginForm) loginForm.style.display = 'block';
+        if (usernameInput) usernameInput.value = '';
+        if (passwordInput) passwordInput.value = '';
+        if (adminOverlay) adminOverlay.classList.remove('active');
+      });
+    }
+  }
+
   // Запуск всего при загрузке страницы
   document.addEventListener('DOMContentLoaded', function () {
     initCountdown();
     initForm();
     initAdmin();
     initScrollHint();
+    initAdminLogout();  // Добавили вызов кнопки выхода
   });
 })();

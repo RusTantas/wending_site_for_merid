@@ -59,7 +59,7 @@
                день нашей свадьбы!
             </p>
             <div class="counter-img">
-               <img src="./img/tire.png" alt="Картинка">
+               <img src="./img/tsvetok_183.png" alt="Картинка">
             </div>
             <div class="location-block">
                <h2>Локация</h2>
@@ -199,6 +199,49 @@
             <div class="quote">
                <h2>С нетерпением ждем Вас</h2>
             </div>
+            
+            <div class="admin-link">
+               <button class="admin-link__btn" id="admin-access-btn">⚙ Панель управления</button>
+            </div>
+            
+             <div class="admin-overlay" id="admin-overlay">
+               <div class="admin-login" id="admin-login-form">
+                  <h3 class="admin-login__title">Вход в панель управления</h3>
+                  <input class="g-form__input_name" type="text" id="admin-username" placeholder="Логин" style="width:100%; margin-bottom:10px;">
+                  <input class="g-form__input_name" type="password" id="admin-password" placeholder="Пароль" style="width:100%; margin-bottom:10px;">
+                  <button class="location" id="admin-login-btn">Войти</button>
+                  <p class="form-message form-message--error" id="admin-login-error" style="display:none;">Неверный логин или пароль</p>
+               </div>
+
+               <div class="admin-panel" id="admin-panel" style="display:none;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;"></div>
+                     <div class="admin-panel__header">
+                        <h2>Панель управления</h2>
+                     </div>
+                     
+                  <div class="admin-stats">
+                     <div class="stat-card"><span id="guest-count">0</span><br>Гостей</div>
+                     <div class="stat-card"><span id="total-persons">0</span><br>Персон</div>
+                     <div class="stat-card"><span id="drink-stats">0</span><br>С напитками</div>
+                  </div>
+                  <input type="text" id="admin-search" placeholder="Поиск по имени..." style="width:100%; margin-bottom:10px;">
+                  <button class="admin-btn" id="admin-export">Экспорт CSV</button>
+                  <button class="admin-btn admin-btn--danger" id="admin-delete-all">Удалить всё</button>
+                  <div class="guest-table-wrapper">
+                     <table class="guest-table">
+                        <thead>
+                           <tr><th>Гость</th><th>Статус</th><th>Трансфер</th><th>Напитки</th><th>Пожелания</th><th>Дата</th><th></th></tr>
+                        </thead>
+                        <tbody id="guest-tbody"></tbody>
+                     </table>
+                     <div class="empty-state" id="empty-state">Пока нет зарегистрированных гостей</div>
+                  </div>
+                     <div style="text-align: center; margin-top: 30px;">
+                        <button id="admin-logout-btn" style="padding: 8px 25px; background: #c6c1a8; border: none; border-radius: 30px; cursor: pointer; font-size: 16px;">Выйти</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
 
 
             </div>
@@ -243,6 +286,9 @@
          }
       });
    </script>
+
+   <script src="js/script.js"></script>
+
 </body>
 </html>
 
