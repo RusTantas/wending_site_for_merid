@@ -1035,23 +1035,28 @@ input:focus, textarea:focus {
 
 /* ПРИНУДИТЕЛЬНАЯ ВЫСОТА ДЛЯ КОНТЕЙНЕРА С ИМЕНАМИ */
 
-/* УВЕЛИЧИВАЕМ НИЖНЮЮ ЧАСТЬ КОНТЕЙНЕРА В 2 РАЗА */
-
 @media (max-width: 480px) {
-   /* Увеличиваем нижний отступ у родительского контейнера */
+   /* Самый главный контейнер */
    .main-title {
-      padding-bottom: 200px !important;  /* было 80px, увеличил в 2.5 раза */
-      min-height: 600px !important;
+      min-height: 500px !important;  /* гарантированное место для имён */
+      height: auto !important;
+      padding: 80px 10px !important;
+      overflow: visible !important;
    }
    
-   /* Дополнительно увеличиваем отступ снизу у имени Дарья */
-   .daria {
-      margin-bottom: 40px !important;
-      padding-bottom: 20px !important;
-    }
+   /* Сами имена */
+   .ilya, .daria {
+      display: block !important;
+      min-height: 100px !important;  /* каждому имени минимум 100px */
+      height: auto !important;
+      line-height: 4 !important;
+      font-size: 55px !important;
+      margin: 15px 0 !important;
+      overflow: visible !important;
+   }
    
-   /* Проверка — увидим новый размер фона */
-   .main-title {
-      background: rgba(255,255,0,0.2) !important;  /* жёлтый фон временно */
+   /* Проверка — показываем границы имени */
+   .ilya, .daria {
+      background: rgba(0,255,0,0.2) !important;  /* зелёный фон временно */
    }
 }
