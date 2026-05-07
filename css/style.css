@@ -1037,7 +1037,7 @@ input:focus, textarea:focus {
    .main-title {
       min-height: 500px !important;
       height: auto !important;
-      padding: 90px 10px !important;
+      padding: 60px 10px !important;
       overflow: visible !important;
       position: relative !important;
    }
@@ -1051,26 +1051,26 @@ input:focus, textarea:focus {
       bottom: auto !important;
       display: block !important;
       text-align: center !important;
-      padding: 10px 0px !important;
    }
    
+   /* Сами имена */
    .ilya, .daria {
-      min-height: 100px !important;
+      display: block !important;
+      min-height: 100px !important;  /* каждому имени минимум 100px */
       height: auto !important;
-      line-height:1 !important;
+      line-height: 4 !important;
       font-size: 55px !important;
-      margin: 0px 0 !important;
+      margin: 15px 0 !important;
       overflow: visible !important;
-      padding: 0px 0px !important;
+      padding: 5px 5px !important;
    }
    
    .h1.and {
       margin: 0 !important;
-      line-height: 1 !important;
+      line-height: 0 !important;
    }
    
-   /* Проверка
    .ilya, .daria {
       background: rgba(0,255,0,0.2) !important;
    }
-} */
+}
