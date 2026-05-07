@@ -1045,27 +1045,39 @@ input:focus, textarea:focus {
       margin-right: 10px !important;
    }
 }
-/* ТОЛЬКО УБИРАЕМ ОБРЕЗКУ ИМЁН НА IPHONE */
+/* ТОЛЬКО УМЕНЬШЕНИЕ ИМЁН НА IPHONE — ОСТАЛЬНОЕ НЕ ТРОГАЕМ */
 
 @media (max-width: 800px) {
-   /* Убираем скрытие переполнения у всех родительских контейнеров */
-   .wrapper,
-   .container,
-   main,
-   .main-title {
-      overflow: visible !important;
+   /* Уменьшаем оба имени */
+   .ilya,
+   .daria {
+      font-size: 50px !important;
    }
    
-   /* Даём больше места для имён */
-   .main-title {
-      padding-top: 80px !important;
-      padding-bottom: 80px !important;
-      min-height: 600px !important;
-      height: auto !important;
+   /* Союз "и" тоже чуть уменьшаем */
+   .h1.and {
+      font-size: 100px !important;
+   }
+}
+
+@media (max-width: 480px) {
+   .ilya,
+   .daria {
+      font-size: 42px !important;
    }
    
-   /* Увеличиваем область видимости для абсолютных элементов */
-   body {
-      overflow-x: hidden !important;
+   .h1.and {
+      font-size: 80px !important;
+   }
+}
+
+@media (max-width: 380px) {
+   .ilya,
+   .daria {
+      font-size: 36px !important;
+   }
+   
+   .h1.and {
+      font-size: 70px !important;
    }
 }
