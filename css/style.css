@@ -1037,7 +1037,7 @@ input:focus, textarea:focus {
    .main-title {
       min-height: 500px !important;
       height: auto !important;
-      padding: 80px 10px !important;
+      padding: 90px 10px !important;
       overflow: visible !important;
       position: relative !important;
    }
@@ -1051,15 +1051,17 @@ input:focus, textarea:focus {
       bottom: auto !important;
       display: block !important;
       text-align: center !important;
+      padding: 10px 0px !important;
    }
    
    .ilya, .daria {
       min-height: 100px !important;
       height: auto !important;
-      line-height: 4 !important;
+      line-height:1 !important;
       font-size: 55px !important;
       margin: 0px 0 !important;
       overflow: visible !important;
+      padding: 0px 0px !important;
    }
    
    .h1.and {
