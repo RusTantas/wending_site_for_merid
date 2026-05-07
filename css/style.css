@@ -1032,36 +1032,54 @@ input:focus, textarea:focus {
 /* ПРАВИЛЬНЫЕ МОБИЛЬНЫЕ БРЕЙКПОИНТЫ — ТОЛЬКО ДО 480px */
 
 /* Для всех мобильных телефонов (до 480px) */
+/* ПРАВИЛЬНЫЙ ПОДХОД — УМЕНЬШАЕМ ВСЕ ИМЕНА ПРОПОРЦИОНАЛЬНО ЭКРАНУ */
+
 @media (max-width: 480px) {
-   .ilya, .daria {
+   /* Переводим всё в относительное позиционирование */
+   .ilya, .daria, .h1.and {
       position: relative !important;
       left: auto !important;
       right: auto !important;
       top: auto !important;
       display: block !important;
       text-align: center !important;
+      margin: 5px 0 !important;
+   }
+   
+   /* Уменьшаем размеры под экран 375px */
+   .ilya, .daria {
+      font-size: 55px !important;
+   }
+   
+   .h1.and {
+      font-size: 90px !important;  /* был 250px, уменьшаем */
       margin: 10px 0 !important;
    }
    
    .main-title {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
+      display: block !important;
       height: auto !important;
-      padding: 50px 15px !important;
-   }
-   
-   .h1.and {
-      position: relative !important;
-      left: auto !important;
-      top: auto !important;
-      margin: 5px 0 !important;
+      padding: 60px 10px !important;
+      overflow: visible !important;
    }
 }
 
-/* Для очень маленьких телефонов (до 380px) */
 @media (max-width: 380px) {
    .ilya, .daria {
-      font-size: 45px !important;
+      font-size: 48px !important;
+   }
+   
+   .h1.and {
+      font-size: 75px !important;
+   }
+}
+
+@media (max-width: 330px) {
+   .ilya, .daria {
+      font-size: 40px !important;
+   }
+   
+   .h1.and {
+      font-size: 60px !important;
    }
 }
