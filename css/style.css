@@ -1033,44 +1033,30 @@ input:focus, textarea:focus {
 
 /* РАЗРУШАЕМ ВСЕ ОГРАНИЧЕНИЯ ВЫСОТЫ ДЛЯ ИМЁН */
 
+/* ПРИНУДИТЕЛЬНАЯ ВЫСОТА ДЛЯ КОНТЕЙНЕРА С ИМЕНАМИ */
+
 @media (max-width: 480px) {
-   /* Убираем высоту у всех родительских контейнеров */
-   html, body, .wrapper, .container, main, .main-title {
-      height: auto !important;
-      min-height: auto !important;
-      max-height: none !important;
-      overflow: visible !important;
-   }
-   
-   /* Убираем фиксированную высоту у самих имён */
-   .h1, .ilya, .daria {
-      height: auto !important;
-      min-height: auto !important;
-      max-height: none !important;
-      overflow: visible !important;
-   }
-   
-   /* Делаем блог с именами достаточно высоким */
+   /* Самый главный контейнер */
    .main-title {
-      padding: 80px 15px 100px 15px !important;
-      margin: 0 auto !important;
+      min-height: 500px !important;  /* гарантированное место для имён */
+      height: auto !important;
+      padding: 80px 10px !important;
+      overflow: visible !important;
    }
    
-   /* Имена — блочные элементы */
-   .ilya, .daria, .h1.and {
-      position: relative !important;
-      display: block !important;
-      text-align: center !important;
-      margin: 15px 0 !important;
-   }
-   
+   /* Сами имена */
    .ilya, .daria {
-      font-size: 55px !important;
+      display: block !important;
+      min-height: 100px !important;  /* каждому имени минимум 100px */
+      height: auto !important;
       line-height: 1.3 !important;
+      font-size: 55px !important;
+      margin: 15px 0 !important;
+      overflow: visible !important;
    }
    
-   .h1.and {
-      font-size: 90px !important;
-      line-height: 1 !important;
+   /* Проверка — показываем границы имени */
+   .ilya, .daria {
+      background: rgba(0,255,0,0.2) !important;  /* зелёный фон временно */
    }
 }
