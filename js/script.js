@@ -109,7 +109,7 @@
       }
 
       if (attendance === 'no' && !wishes) {
-        showMessage('Пожалуйста, напишите пожелания молодожёнам 🤍', 'error');
+        showMessage('Пожалуйста, напишите пожелания молодожёнам ', 'error');
         return;
       }
 
@@ -129,9 +129,9 @@
       saveGuests(guests);
 
       if (attendance === 'yes') {
-        showMessage('Спасибо! Ваш ответ сохранен. Ждем встречи! 🎉', 'success');
+        showMessage('Спасибо! Ваш ответ сохранен. Ждем встречи! ', 'success');
       } else {
-        showMessage('Спасибо за пожелания! Нам очень жаль, что не сможем увидеться, но ваши теплые слова мы обязательно прочитаем 🤍', 'success');
+        showMessage('Спасибо за пожелания! Нам очень жаль, что не сможем увидеться, но ваши теплые слова мы обязательно прочитаем ', 'success');
       }
       form.reset();
       if (wishesGroup) wishesGroup.style.display = 'none';
