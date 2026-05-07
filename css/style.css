@@ -1046,25 +1046,12 @@ input:focus, textarea:focus {
    }
 }
 
-/* ТОЛЬКО УМЕНЬШЕНИЕ ИМЁН ДО МИНИМУМА — ПРОВЕРКА */
-
 @media (max-width: 800px) {
-   .ilya,
-   .daria {
-      font-size: 20px !important;
-   }
-}
-
-@media (max-width: 480px) {
-   .ilya,
-   .daria {
-      font-size: 16px !important;
-   }
-}
-
-@media (max-width: 380px) {
-   .ilya,
-   .daria {
-      font-size: 14px !important;
+   .ilya, .daria {
+      word-break: break-all !important;   /* принудительный перенос */
+      white-space: normal !important;      /* разрешаем перенос */
+      max-width: 80vw !important;          /* максимум 80% ширины экрана */
+      text-align: center !important;
+      display: block !important;
    }
 }
