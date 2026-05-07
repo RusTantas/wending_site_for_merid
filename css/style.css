@@ -1045,3 +1045,27 @@ input:focus, textarea:focus {
       margin-right: 10px !important;
    }
 }
+/* НОВЫЙ ПОДХОД — МАСШТАБИРУЕМ ВЕСЬ БЛОК С ИМЕНАМИ НА IPHONE */
+
+@media (max-width: 800px) {
+   /* Масштабируем весь блок с именами */
+   .main-title {
+      transform: scale(0.7);
+      transform-origin: center top;
+      margin-top: -50px;
+      padding-top: 80px;
+      padding-bottom: 80px;
+   }
+   
+   /* Убираем обрезку у родителя */
+   body {
+      overflow-x: hidden;
+   }
+}
+
+@media (max-width: 480px) {
+   .main-title {
+      transform: scale(0.55);
+      margin-top: -10px;
+   }
+}
