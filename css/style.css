@@ -1029,29 +1029,39 @@ input:focus, textarea:focus {
 }
 
 /* Для очень маленьких телефонов (ширина до 380px) */
-@media (max-width: 380px) {
-   .timer {
-      margin-top: 10px;
+/* ПРАВИЛЬНЫЕ МОБИЛЬНЫЕ БРЕЙКПОИНТЫ — ТОЛЬКО ДО 480px */
+
+/* Для всех мобильных телефонов (до 480px) */
+@media (max-width: 480px) {
+   .ilya, .daria {
+      position: relative !important;
+      left: auto !important;
+      right: auto !important;
+      top: auto !important;
+      display: block !important;
+      text-align: center !important;
+      margin: 10px 0 !important;
    }
    
-   .counter__round {
-      font-size: 28px !important;
-      height: 65px !important;
-      width: 65px !important;
-      line-height: 65px !important;
+   .main-title {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      height: auto !important;
+      padding: 50px 15px !important;
    }
    
-   .counter__round:not(:last-child) {
-      margin-right: 10px !important;
+   .h1.and {
+      position: relative !important;
+      left: auto !important;
+      top: auto !important;
+      margin: 5px 0 !important;
    }
 }
 
-@media (max-width: 800px) {
+/* Для очень маленьких телефонов (до 380px) */
+@media (max-width: 380px) {
    .ilya, .daria {
-      word-break: break-all !important;   /* принудительный перенос */
-      white-space: normal !important;      /* разрешаем перенос */
-      max-width: 80vw !important;          /* максимум 80% ширины экрана */
-      text-align: center !important;
-      display: block !important;
+      font-size: 45px !important;
    }
 }
