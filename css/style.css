@@ -1096,10 +1096,6 @@ input:focus, textarea:focus {
       line-height: 0 !important;
    }
    
-   .ilya, .daria {
-      background: rgba(0,255,0,0.2) !important;
-   }
-}
 
 /* ПОДНИМАЕМ ТЕКСТ "приглашают вас на свою свадьбу" БЛИЖЕ К ИМЕНАМ */
 
