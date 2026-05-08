@@ -1,31 +1,40 @@
 (function () {
-  const STORAGE_KEY = 'wedding_guests_daria_alexander';
+  // GOOGLE SHEETS URL — ВАШ URL ОТ APPS SCRIPT
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwWR3rgX4R9eA_fE51GjxzXf42-CTXv1uKRE4h5-U8WdJze0FCBhCGJvvCmvSuZNkw6/exec';
+  
+  // НАСТРОЙКИ ДОСТУПА К АДМИН-ПАНЕЛИ
   const ADMIN_USER = 'DARIY';
   const ADMIN_PASS = 'SASHA';
+  const ADMIN_TABLE_URL = 'https://docs.google.com/spreadsheets/d/1ocJX13fy9TZxosVoTIxS5e2ssUqpPxSducE7xH9d_ak/edit?gid=0#gid=0';
 
-  function getGuests() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    } catch (e) {
-      return [];
-    }
+  // === 1. ОТПРАВКА В GOOGLE ТАБЛИЦЫ ===
+async function sendToGoogleSheets(formData) {
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',  // ← это решает проблему CORS
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
+    
+    // При mode: 'no-cors' мы не можем получить ответ,
+    // поэтому просто считаем, что всё успешно
+    return { success: true };
+  } catch (error) {
+    console.error('Ошибка отправки:', error);
+    return { success: false, error: error };
   }
+}
 
-  function saveGuests(guests) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(guests));
-  }
-
-  function generateId() {
-    return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
-  }
-
-  // Таймер для блока Тайминг дня
+  // === 2. ТАЙМЕР ===
   function initCountdown() {
     const target = new Date('2026-06-21T15:30:00').getTime();
-    const daysEl = document.getElementById('countdown-days');
-    const hoursEl = document.getElementById('countdown-hours');
-    const minsEl = document.getElementById('countdown-mins');
-    const secsEl = document.getElementById('countdown-secs');
+    const daysEl = document.getElementById('timer-days');
+    const hoursEl = document.getElementById('timer-hours');
+    const minsEl = document.getElementById('timer-mins');
+    const secsEl = document.getElementById('timer-secs');
 
     if (!daysEl) return;
 
@@ -53,20 +62,94 @@
     setInterval(update, 1000);
   }
 
-  // Плавная прокрутка при клике на стрелку
+  // === 3. ПРОКРУТКА ПО СТРЕЛКЕ ===
   function initScrollHint() {
-    const scrollHint = document.getElementById('scrollHint');
+    const scrollHint = document.querySelector('.arrow');
     if (!scrollHint) return;
     
-    scrollHint.addEventListener('click', function() {
-      const nextSection = document.querySelector('.section');
+    scrollHint.addEventListener('click', function(e) {
+      e.preventDefault();
+      const nextSection = document.querySelector('.weekday');
       if (nextSection) {
         nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   }
 
-  // Форма RSVP
+  // === 4. МОДАЛЬНОЕ ОКНО АДМИНКИ ===
+  function showAdminLoginModal() {
+    const overlay = document.createElement('div');
+    overlay.id = 'admin-modal-overlay';
+    overlay.style.cssText = `
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85); display: flex; align-items: center;
+      justify-content: center; z-index: 2000;
+    `;
+
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+      background: white; padding: 35px 25px; border-radius: 30px;
+      text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      max-width: 350px; width: 90%; font-family: 'Cormorant-Regular', serif;
+    `;
+    modal.innerHTML = `
+      <h3 style="margin: 0 0 25px 0; font-size: 32px; color: #4d3e2a;">Вход в панель</h3>
+      <input type="text" id="admin-login-username" placeholder="Логин" style="
+        display: block; width: 100%; padding: 12px; margin: 15px 0;
+        border: 1px solid #cbc5af; border-radius: 15px; font-size: 18px;
+        box-sizing: border-box;
+      ">
+      <input type="password" id="admin-login-password" placeholder="Пароль" style="
+        display: block; width: 100%; padding: 12px; margin: 15px 0 25px;
+        border: 1px solid #cbc5af; border-radius: 15px; font-size: 18px;
+        box-sizing: border-box;
+      ">
+      <div id="admin-login-error" style="color: #d33; margin-bottom: 15px; font-size: 16px;"></div>
+      <button id="admin-login-submit" style="
+        background: #c6c1a8; border: none; padding: 10px 25px;
+        border-radius: 40px; font-size: 22px; cursor: pointer; width: 100%;
+      ">Войти</button>
+      <button id="admin-login-close" style="
+        background: transparent; border: none; margin-top: 20px;
+        font-size: 18px; cursor: pointer; color: #888; width: 100%;
+      ">Отмена</button>
+    `;
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    const submitBtn = modal.querySelector('#admin-login-submit');
+    const closeBtn = modal.querySelector('#admin-login-close');
+    const errorDiv = modal.querySelector('#admin-login-error');
+    const usernameInput = modal.querySelector('#admin-login-username');
+    const passwordInput = modal.querySelector('#admin-login-password');
+
+    const checkCredentials = () => {
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+      if (username === ADMIN_USER && password === ADMIN_PASS) {
+        window.open(ADMIN_TABLE_URL, '_blank');
+        document.body.removeChild(overlay);
+      } else {
+        errorDiv.textContent = '❌ Неверный логин или пароль';
+      }
+    };
+
+    submitBtn.addEventListener('click', checkCredentials);
+    closeBtn.addEventListener('click', () => document.body.removeChild(overlay));
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) document.body.removeChild(overlay);
+    });
+    
+    usernameInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') checkCredentials();
+    });
+    passwordInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') checkCredentials();
+    });
+  }
+
+  // === 5. ФОРМА RSVP (ГЛАВНАЯ) ===
   function initForm() {
     const form = document.getElementById('guest-form');
     const message = document.getElementById('form-message');
@@ -75,6 +158,7 @@
 
     if (!form) return;
 
+    // Показываем/скрываем пожелания
     if (attendanceNo && wishesGroup) {
       const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
       attendanceRadios.forEach(function(radio) {
@@ -84,9 +168,12 @@
       });
     }
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();  // ← ЭТО ГЛАВНОЕ — НЕ ДАЁТ ОБНОВИТЬСЯ СТРАНИЦЕ
+      
+      console.log('Форма отправлена');
 
+      // Собираем данные
       const fullname = document.getElementById('guest-fullname').value.trim();
       const persons = parseInt(document.getElementById('guest-persons').value, 10) || 1;
       const attendanceInput = form.querySelector('input[name="attendance"]:checked');
@@ -98,271 +185,74 @@
       const transport = Array.from(transportCheckboxes).map(cb => cb.value).join(', ');
       const drinks = Array.from(drinkCheckboxes).map(cb => cb.value).join(', ');
 
+      // Валидация
       if (!fullname) {
         showMessage('Пожалуйста, укажите ваше имя', 'error');
         return;
       }
-
       if (!attendance) {
         showMessage('Пожалуйста, укажите, сможете ли вы присутствовать', 'error');
         return;
       }
-
       if (attendance === 'no' && !wishes) {
-        showMessage('Пожалуйста, напишите пожелания молодожёнам ', 'error');
+        showMessage('Пожалуйста, напишите пожелания молодожёнам 🤍', 'error');
         return;
       }
 
+      // Формируем объект
       const guest = {
-        id: generateId(),
         fullname: fullname,
         persons: persons,
         attendance: attendance,
         transport: transport || '',
         drinks: drinks || '',
-        wishes: wishes || '',
-        registeredAt: new Date().toISOString()
+        wishes: wishes || ''
       };
 
-      const guests = getGuests();
-      guests.push(guest);
-      saveGuests(guests);
+      console.log('Отправляем в Google:', guest);
 
-      if (attendance === 'yes') {
-        showMessage('Спасибо! Ваш ответ сохранен. Ждем встречи! ', 'success');
+      // Отправляем
+      const result = await sendToGoogleSheets(guest);
+
+      if (result.success) {
+        if (attendance === 'yes') {
+          showMessage('Спасибо! Ваш ответ сохранен. Ждем встречи! 🎉', 'success');
+        } else {
+          showMessage('Спасибо за пожелания! 🤍', 'success');
+        }
+        form.reset();
+        if (wishesGroup) wishesGroup.style.display = 'none';
       } else {
-        showMessage('Спасибо за пожелания! Нам очень жаль, что не сможем увидеться, но ваши теплые слова мы обязательно прочитаем ', 'success');
+        showMessage('Ошибка! Попробуйте ещё раз.', 'error');
       }
-      form.reset();
-      if (wishesGroup) wishesGroup.style.display = 'none';
     });
 
     function showMessage(text, type) {
       if (!message) return;
       message.textContent = text;
       message.className = 'form-message form-message--' + type;
-      setTimeout(function () {
+      setTimeout(function() {
         message.className = 'form-message';
       }, 5000);
     }
   }
 
-  // Админ-панель
-  function initAdmin() {
+  // === 6. АДМИН-КНОПКА ===
+  function initAdminButton() {
     const adminBtn = document.getElementById('admin-access-btn');
-    const adminOverlay = document.getElementById('admin-overlay');
-    const loginForm = document.getElementById('admin-login-form');
-    const loginError = document.getElementById('admin-login-error');
-    const adminPanel = document.getElementById('admin-panel');
-    const adminClose = document.getElementById('admin-close');
-    const searchInput = document.getElementById('admin-search');
-    const exportBtn = document.getElementById('admin-export');
-    const deleteAllBtn = document.getElementById('admin-delete-all');
-    const guestCount = document.getElementById('guest-count');
-    const totalPersons = document.getElementById('total-persons');
-    const drinkStats = document.getElementById('drink-stats');
-
-    if (!adminBtn) return;
-
-    adminBtn.addEventListener('click', function () {
-      adminOverlay.classList.add('active');
-    });
-
-    if (adminClose) {
-      adminClose.addEventListener('click', function () {
-        adminOverlay.classList.remove('active');
-      });
-    }
-
-    if (loginForm) {
-      const loginBtn = document.getElementById('admin-login-btn');
-      if (loginBtn) {
-        loginBtn.addEventListener('click', function () {
-          var username = document.getElementById('admin-username').value;
-          var password = document.getElementById('admin-password').value;
-
-          if (username === ADMIN_USER && password === ADMIN_PASS) {
-            loginForm.style.display = 'none';
-            if (adminPanel) adminPanel.style.display = 'block';
-            if (loginError) loginError.style.display = 'none';
-            renderGuests();
-          } else {
-            if (loginError) {
-              loginError.textContent = 'Неверный логин или пароль';
-              loginError.style.display = 'block';
-            }
-          }
-        });
-      }
-    }
-
-    if (searchInput) {
-      searchInput.addEventListener('input', function () {
-        renderGuests();
-      });
-    }
-
-    if (exportBtn) {
-      exportBtn.addEventListener('click', function () {
-        exportToCSV();
-      });
-    }
-
-    if (deleteAllBtn) {
-      deleteAllBtn.addEventListener('click', function () {
-        if (confirm('Удалить всех гостей?')) {
-          saveGuests([]);
-          renderGuests();
-        }
-      });
-    }
-
-    function renderGuests() {
-      const tbody = document.getElementById('guest-tbody');
-      const emptyState = document.getElementById('empty-state');
-      if (!tbody) return;
-
-      var guests = getGuests();
-      var filter = searchInput ? searchInput.value.toLowerCase() : '';
-
-      if (filter) {
-        guests = guests.filter(function (g) {
-          return (g.fullname && g.fullname.toLowerCase().indexOf(filter) !== -1);
-        });
-      }
-
-      if (guests.length === 0) {
-        tbody.innerHTML = '';
-        if (emptyState) emptyState.style.display = 'block';
-        updateStats(getGuests());
-        return;
-      }
-
-      if (emptyState) emptyState.style.display = 'none';
-
-      tbody.innerHTML = guests.map(function (g) {
-        var attendanceHtml = '';
-        if (g.attendance === 'yes') {
-          attendanceHtml = '<span class="guest-table__attendance--yes">✅ Да</span>';
-        } else if (g.attendance === 'no') {
-          attendanceHtml = '<span class="guest-table__attendance--no">❌ Нет</span>';
-        } else {
-          attendanceHtml = '-';
-        }
-        
-        var transportHtml = g.transport ? '<div class="guest-table__transport">🚗 ' + escapeHtml(g.transport) + '</div>' : '-';
-        var drinksHtml = g.drinks ? '<div class="guest-table__drinks">🍷 ' + escapeHtml(g.drinks) + '</div>' : '-';
-        var wishesHtml = g.wishes ? '<div class="guest-table__wishes">💝 ' + escapeHtml(g.wishes) + '</div>' : '-';
-        
-        return '<tr>' +
-          '<td><strong>' + escapeHtml(g.fullname) + '</strong><br><span class="guest-table__persons">👥 ' + g.persons + ' чел.</span></td>' +
-          '<td>' + attendanceHtml + '</td>' +
-          '<td>' + transportHtml + '</td>' +
-          '<td>' + drinksHtml + '</td>' +
-          '<td>' + wishesHtml + '</td>' +
-          '<td>' + new Date(g.registeredAt).toLocaleDateString('ru-RU') + '</td>' +
-          '<td><button class="guest-table__delete" onclick="window.__deleteGuest(\'' + g.id + '\')">🗑 Удалить</button></td>' +
-          '</tr>';
-      }).join('');
-
-      updateStats(getGuests());
-    }
-
-    function updateStats(allGuests) {
-      if (guestCount) guestCount.textContent = allGuests.length;
-      if (totalPersons) {
-        var total = allGuests.reduce(function (sum, g) { 
-          return sum + (parseInt(g.persons) || 1); 
-        }, 0);
-        totalPersons.textContent = total;
-      }
-      if (drinkStats) {
-        var drinkCount = 0;
-        allGuests.forEach(function (g) {
-          if (g.drinks && g.drinks.length > 0) drinkCount++;
-        });
-        drinkStats.textContent = drinkCount;
-      }
-    }
-
-    window.__deleteGuest = function (id) {
-      if (!confirm('Удалить этого гостя?')) return;
-      var guests = getGuests().filter(function (g) { return g.id !== id; });
-      saveGuests(guests);
-      renderGuests();
-    };
-
-    function exportToCSV() {
-      var guests = getGuests();
-      if (guests.length === 0) return;
-
-      var headers = ['ФИО + гости', 'Кол-во персон', 'Присутствие', 'Трансфер', 'Напитки', 'Пожелания', 'Дата регистрации'];
-      var rows = guests.map(function (g) {
-        var attendanceText = g.attendance === 'yes' ? 'Да' : (g.attendance === 'no' ? 'Нет' : '');
-        return [
-          g.fullname,
-          g.persons || 1,
-          attendanceText,
-          g.transport || '',
-          g.drinks || '',
-          g.wishes || '',
-          new Date(g.registeredAt).toLocaleString('ru-RU')
-        ];
-      });
-
-      var csvContent = '\uFEFF' + headers.join(',') + '\n' +
-        rows.map(function (r) {
-          return r.map(function (cell) {
-            var str = String(cell);
-            if (str.indexOf(',') !== -1 || str.indexOf('"') !== -1) {
-              return '"' + str.replace(/"/g, '""') + '"';
-            }
-            return str;
-          }).join(',');
-        }).join('\n');
-
-      var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-      var link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'wedding_guests_' + new Date().toISOString().slice(0, 10) + '.csv';
-      link.click();
-      URL.revokeObjectURL(link.href);
-    }
-
-    function escapeHtml(str) {
-      if (!str) return '';
-      var div = document.createElement('div');
-      div.textContent = str;
-      return div.innerHTML;
-    }
-  }
-
-  // Кнопка выхода из админ-панели
-  function initAdminLogout() {
-    const adminLogoutBtn = document.getElementById('admin-logout-btn');
-    if (adminLogoutBtn) {
-      adminLogoutBtn.addEventListener('click', function() {
-        const adminPanel = document.getElementById('admin-panel');
-        const loginForm = document.getElementById('admin-login-form');
-        const adminOverlay = document.getElementById('admin-overlay');
-        const usernameInput = document.getElementById('admin-username');
-        const passwordInput = document.getElementById('admin-password');
-        
-        if (adminPanel) adminPanel.style.display = 'none';
-        if (loginForm) loginForm.style.display = 'block';
-        if (usernameInput) usernameInput.value = '';
-        if (passwordInput) passwordInput.value = '';
-        if (adminOverlay) adminOverlay.classList.remove('active');
+    if (adminBtn) {
+      adminBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        showAdminLoginModal();
       });
     }
   }
 
-  // Запуск всего при загрузке страницы
-  document.addEventListener('DOMContentLoaded', function () {
+  // === 7. ЗАПУСК ===
+  document.addEventListener('DOMContentLoaded', function() {
     initCountdown();
     initForm();
-    initAdmin();
     initScrollHint();
-    initAdminLogout();  // Добавили вызов кнопки выхода
+    initAdminButton();
   });
 })();
