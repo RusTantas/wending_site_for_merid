@@ -1145,3 +1145,48 @@ input:focus, textarea:focus {
       top: 20px !important;         /* дополнительный сдвиг вниз */
    }
 }
+
+/* ФОН ДЛЯ ОВЕРЛЕЯ АДМИН-ПАНЕЛИ */
+/* БЕЛАЯ ПОДЛОЖКА ДЛЯ ФОРМЫ ВХОДА В АДМИН-ПАНЕЛЬ */
+
+#admin-login-form {
+   background: white !important;
+   padding: 40px !important;
+   border-radius: 20px !important;
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+   max-width: 400px !important;
+   margin: 0 auto !important;
+}
+
+#admin-login-form h3 {
+   text-align: center !important;
+   margin-bottom: 25px !important;
+   color: #424745 !important;
+}
+
+#admin-login-form input {
+   display: block !important;
+   width: 100% !important;
+   padding: 12px !important;
+   margin: 15px 0 !important;
+   border: 1px solid #cbc5af !important;
+   border-radius: 10px !important;
+   background: white !important;
+   font-size: 18px !important;
+}
+
+#admin-login-form button {
+   width: 100% !important;
+   padding: 12px !important;
+   background: #c6c1a8 !important;
+   border: none !important;
+   border-radius: 30px !important;
+   font-size: 20px !important;
+   cursor: pointer !important;
+   transition: all 0.3s ease !important;
+}
+
+#admin-login-form button:hover {
+   background: #b5ae8a !important;
+   color: white !important;
+}
