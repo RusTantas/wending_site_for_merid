@@ -29,38 +29,46 @@ async function sendToGoogleSheets(formData) {
 }
 
   // === 2. ТАЙМЕР ===
-  function initCountdown() {
-    const target = new Date('2026-06-21T15:30:00').getTime();
-    const daysEl = document.getElementById('timer-days');
-    const hoursEl = document.getElementById('timer-hours');
-    const minsEl = document.getElementById('timer-mins');
-    const secsEl = document.getElementById('timer-secs');
+function initCountdown() {
+  const target = new Date('2026-06-21T15:30:00').getTime();
+  const daysEl = document.getElementById('timer-days');
+  const hoursEl = document.getElementById('timer-hours');
+  const minsEl = document.getElementById('timer-mins');
+  const secsEl = document.getElementById('timer-secs');
 
-    if (!daysEl) return;
+  if (!daysEl) return;
 
-    function update() {
-      const now = Date.now();
-      const diff = target - now;
-      if (diff <= 0) {
-        daysEl.textContent = '0';
-        hoursEl.textContent = '0';
-        minsEl.textContent = '0';
-        secsEl.textContent = '0';
-        return;
-      }
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const mins = Math.floor((diff / (1000 * 60)) % 60);
-      const secs = Math.floor((diff / 1000) % 60);
-      daysEl.textContent = days;
-      hoursEl.textContent = hours;
-      minsEl.textContent = mins;
-      secsEl.textContent = secs;
-    }
-
-    update();
-    setInterval(update, 1000);
+  function formatNumber(num) {
+    return num < 10 ? '0' + num : num;
   }
+
+  function update() {
+    const now = Date.now();
+    const diff = target - now;
+    
+    if (diff <= 0) {
+      daysEl.textContent = '00';
+      hoursEl.textContent = '00';
+      minsEl.textContent = '00';
+      secsEl.textContent = '00';
+      return;
+    }
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / (1000 * 60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+    
+    // Обновляем только если цифры изменились (чтобы не было лишних перерисовок)
+    if (daysEl.textContent !== formatNumber(days)) daysEl.textContent = formatNumber(days);
+    if (hoursEl.textContent !== formatNumber(hours)) hoursEl.textContent = formatNumber(hours);
+    if (minsEl.textContent !== formatNumber(mins)) minsEl.textContent = formatNumber(mins);
+    if (secsEl.textContent !== formatNumber(secs)) secsEl.textContent = formatNumber(secs);
+  }
+
+  update();
+  setInterval(update, 1000);
+}
 
   // === 3. ПРОКРУТКА ПО СТРЕЛКЕ ===
   function initScrollHint() {
